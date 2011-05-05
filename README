@@ -1,0 +1,5 @@
+
+analog - Analytics for Node Logs
+
+Makes it easy to collect data optimized for site analytics using whatever existing logging system you have.
+Provides an analytics REST API to make it easy to get insight on your traffic from this data.
