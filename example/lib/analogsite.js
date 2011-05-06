@@ -43,7 +43,7 @@ exports.createServer = function (port) {
   
   var server = http.createServer(function (request, response) {
 
-    logger.info(analogger.parseRequest(request));
+    logger.info(analogger.requestToJSON(request));
 
     var body = '';
     
@@ -58,7 +58,7 @@ exports.createServer = function (port) {
       router.handle(request, body, function (route) {
         response.writeHead(route.status, route.headers);
         response.end(route.body);
-	logger.info(analogger.parseResponse(response));
+	logger.info(analogger.responseToJSON(response));
       });
     })
   });
