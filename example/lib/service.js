@@ -26,7 +26,7 @@ exports.createRouter = function () {
 				resstr = resstr + "\n" + attr + " ::: " + res[attr];
 				console.log(attr);
 			}
-      res.send(501, {}, { "res": resstr });
+      res.send(501, {}, { "test_data": "test_content" });
     });
   });
 

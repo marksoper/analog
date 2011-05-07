@@ -23,8 +23,11 @@ console.log(require.paths.unshift(path.join(__dirname, '../..', 'lib')));
 //
 // Configure winston
 //
-var logger = new (winston.Logger)({
-  transports: [
+
+
+var analogger = new (winston.Logger)({
+	//levels: {analog: 0},
+	transports: [
     new (winston.transports.Console)(),
     new (winston.transports.File)({ filename: './log/ana.log' })
   ]
@@ -39,11 +42,8 @@ var analog = require('analog');
  */
 exports.createServer = function (port) {
   var router = service.createRouter();
-  var analogger = new analog.Logger();
   
   var server = http.createServer(function (request, response) {
-
-    logger.info(analogger.requestToJSON(request));
 
     var body = '';
     
@@ -58,7 +58,7 @@ exports.createServer = function (port) {
       router.handle(request, body, function (route) {
         response.writeHead(route.status, route.headers);
         response.end(route.body);
-				// logger.info(analogger.responseToJSON(response,route.body));
+				analogger.info(analog.dumps(request, response, route.body));
       });
     })
   });
