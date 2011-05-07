@@ -1,0 +1,12 @@
+
+{
+    "subdomain": "analog",
+    "auth": {
+      "username": "marksoper",
+      "password": "hint: italian name for a classic hopper"
+    },
+    "inputs": [{
+      "token": "caaa6ece-5703-4c4a-b5ae-22b8a2eaae13",
+      "id": 3073
+    }]
+  }

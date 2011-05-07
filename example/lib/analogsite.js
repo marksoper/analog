@@ -29,7 +29,8 @@ var analogger = new (winston.Logger)({
 	//levels: {analog: 0},
 	transports: [
     new (winston.transports.Console)(),
-    new (winston.transports.File)({ filename: './log/ana.log' })
+    new (winston.transports.File)({ filename: './log/ana.log' }),
+    new (winston.transports.Loggly, options);  // start here by reading loggly-config file
   ]
 });
 
