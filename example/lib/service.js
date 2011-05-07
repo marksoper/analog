@@ -21,7 +21,12 @@ exports.createRouter = function () {
   
   router.path('/', function () {
     this.get().bind(function (res) {
-      res.send(501, {}, { action: 'list' });
+		  var resstr = '';
+			for (attr in res) {
+				resstr = resstr + "\n" + attr + " ::: " + res[attr];
+				console.log(attr);
+			}
+      res.send(501, {}, { "res": resstr });
     });
   });
 

@@ -58,7 +58,7 @@ exports.createServer = function (port) {
       router.handle(request, body, function (route) {
         response.writeHead(route.status, route.headers);
         response.end(route.body);
-	logger.info(analogger.responseToJSON(response));
+				// logger.info(analogger.responseToJSON(response,route.body));
       });
     })
   });
