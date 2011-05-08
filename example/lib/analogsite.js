@@ -10,9 +10,14 @@
  */
  
 var http = require('http'),
+    fs = require('fs'),
     path = require('path'),
     winston = require('winston'),
-    service = require('./service');
+    service = require('./service'),
+    syslogConfig = require('../config/syslog-config'),
+		logglyConfig = JSON.parse(fs.readFileSync('./config/loggly-config.json').toString());
+
+console.log(logglyConfig['inputs']);
 
 //
 // Unshift analog lib path - temporary until installable by npm
@@ -23,14 +28,18 @@ console.log(require.paths.unshift(path.join(__dirname, '../..', 'lib')));
 //
 // Configure winston
 //
-
+winston.setLevels(syslogConfig.levels);
 
 var analogger = new (winston.Logger)({
 	//levels: {analog: 0},
 	transports: [
     new (winston.transports.Console)(),
     new (winston.transports.File)({ filename: './log/ana.log' }),
-    new (winston.transports.Loggly, options);  // start here by reading loggly-config file
+    new (winston.transports.Loggly)({
+			"subdomain": logglyConfig.subdomain,
+			"auth": logglyConfig.auth,
+			"inputs": logglyConfig.inputs
+			})  // start here by reading loggly-config file
   ]
 });
 
