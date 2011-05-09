@@ -25,25 +25,22 @@ require.paths.unshift(path.join(__dirname, '../..', 'lib'));
 //
 // Configure winston
 //
-winston.setLevels(syslogConfig.levels);
+//winston.setLevels(syslogConfig.levels);
+
+var logglyTransport = new (winston.transports.Loggly)(logglyConfig);
 
 var logger = new (winston.Logger)({
 	levels: syslogConfig.levels,
 	transports: [
     new (winston.transports.Console)(),
     new (winston.transports.File)({ filename: './log/ana.log' }),
-    new (winston.transports.Loggly)(logglyConfig)
+		logglyTransport
   ]
 });
 
 var analog = require('analog');
 
-
-// debugging
-debugger;
-console.log(logger.levels);
-console.log(logglyConfig);
-logger.info("test analog");
+logger.info(JSON.stringify(logglyTransport));
 
 
 
