@@ -4,9 +4,10 @@
       "loggly": {
         "subdomain": "analog",
         "inputToken": "caaa6ece-5703-4c4a-b5ae-22b8a2eaae13",
+		"inputName": "test0",
         "auth": {
           "username": "marksoper",
-          "password": "Hint: old school jumper"
+          "password": "Hint: old school hopper"
         }
       }
     }

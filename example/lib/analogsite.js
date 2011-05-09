@@ -17,22 +17,18 @@ var http = require('http'),
     syslogConfig = require('../config/syslog-config'),
 		logglyConfig = JSON.parse(fs.readFileSync('./config/loggly-config.json').toString())["transports"]["loggly"];
 
-console.log(logglyConfig['inputs']);
-
 //
 // Unshift analog lib path - temporary until installable by npm
 //
 require.paths.unshift(path.join(__dirname, '../..', 'lib'));
-console.log(require.paths.unshift(path.join(__dirname, '../..', 'lib')));
 
 //
 // Configure winston
 //
 winston.setLevels(syslogConfig.levels);
 
-console.log(logglyConfig["inputToken"]);
-
-var analogger = new (winston.Logger)({
+var logger = new (winston.Logger)({
+	levels: syslogConfig.levels,
 	transports: [
     new (winston.transports.Console)(),
     new (winston.transports.File)({ filename: './log/ana.log' }),
@@ -40,8 +36,25 @@ var analogger = new (winston.Logger)({
   ]
 });
 
-
 var analog = require('analog');
+
+
+// debugging
+debugger;
+console.log(logger.levels);
+console.log(logglyConfig);
+logger.info("test analog");
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Creates the server for the analog web service
@@ -65,7 +78,10 @@ exports.createServer = function (port) {
       router.handle(request, body, function (route) {
         response.writeHead(route.status, route.headers);
         response.end(route.body);
-				analogger.info(analog.dumps(request, response, route.body));
+				debugger;
+        console.log(logger.levels);
+	      console.log(logger["analog"]);
+				logger.info(analog.dumps(request, response, route.body));
       });
     })
   });
