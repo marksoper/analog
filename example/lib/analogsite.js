@@ -15,7 +15,7 @@ var http = require('http'),
     winston = require('winston'),
     service = require('./service'),
     syslogConfig = require('../config/syslog-config'),
-		logglyConfig = JSON.parse(fs.readFileSync('./config/loggly-config.json').toString());
+		logglyConfig = JSON.parse(fs.readFileSync('./config/loggly-config.json').toString())["transports"]["loggly"];
 
 console.log(logglyConfig['inputs']);
 
@@ -30,16 +30,13 @@ console.log(require.paths.unshift(path.join(__dirname, '../..', 'lib')));
 //
 winston.setLevels(syslogConfig.levels);
 
+console.log(logglyConfig["inputToken"]);
+
 var analogger = new (winston.Logger)({
-	//levels: {analog: 0},
 	transports: [
     new (winston.transports.Console)(),
     new (winston.transports.File)({ filename: './log/ana.log' }),
-    new (winston.transports.Loggly)({
-			"subdomain": logglyConfig.subdomain,
-			"auth": logglyConfig.auth,
-			"inputs": logglyConfig.inputs
-			})  // start here by reading loggly-config file
+    new (winston.transports.Loggly)(logglyConfig)
   ]
 });
 
