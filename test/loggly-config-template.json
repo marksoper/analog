@@ -1,14 +1,15 @@
 
+
 {
-    "transports": {
-      "loggly": {
-        "subdomain": "",
-        "inputToken": "",
-		"inputName": "",
-        "auth": {
-          "username": "",
-          "password": ""
-        }
-      }
+  "subdomain": "",
+  "auth": {
+    "username": "",
+    "password": ""
+  },
+  "inputs": [{
+    "token": "",
+    "name": ""
     }
-  }
+  ]
+}
+  
