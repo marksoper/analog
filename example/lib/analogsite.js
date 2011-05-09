@@ -22,9 +22,6 @@ var client = loggly.createClient({ "subdomain": logglyConfig.subdomain });
 
 var analog = require('analog');
 
-
-console.log(JSON.stringify(logglyConfig));
-
 /**
  * Creates the server for the analog web service
  * @param {int} port: Port for the server to run on
@@ -48,7 +45,7 @@ exports.createServer = function (port) {
         response.writeHead(route.status, route.headers);
         response.end(route.body);
 				var txn = analog.dumps(request, response, route.body);
- 	      client.log(logglyConfig.inputs[0].token, "txn here");
+ 	      client.log(logglyConfig.inputs[0].token, txn);
 				console.log(txn);
       });
     })
