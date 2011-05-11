@@ -1,0 +1,9 @@
+{
+  "collector_port" : 8000,
+  "dashboard_port" : 8080,
+  "enable_dashboard" : true,
+  "mongo_host" : "localhost",
+  "mongo_port" : 27017,
+  "mongo_db" : "analog",
+  "mongo_collection" : "Transaction"
+}
