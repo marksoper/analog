@@ -1,7 +1,7 @@
 
 
 var helper = exports;
-var winston = require("../../winston");
+var winston = require("winston");
 
 helper.getTransports = function(config) {
 	//

@@ -41,6 +41,13 @@ exports.createServer = function (port) {
     });
     
     request.on('end', function () {
+	    console.log("--------------");
+	    //for (attr in request.client) {
+	    //if (typeof(request.client[attr]) != 'function') {
+	    //console.log("request.client." + attr + " ::: " + typeof(request.client[attr]) + " :: " + String(request.client[attr].constructor) + " : " + String(request.client[attr]).substr(0,50));
+	    //}
+	    //}
+	    var reqdata = analog.parseRequest(request);
 		  var response_body = "response body goes here";
 			response.writeHead(200);
 		  response.end(response_body);
