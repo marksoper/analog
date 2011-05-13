@@ -61,9 +61,8 @@ exports.start = function(options, callback) {
   var server = exports.createServer(options.collector_port);
   callback(null, server);
 };
-//exports.start = start;
 
-config = JSON.parse(fs.readFileSync('../config/config.json').toString());
+var config = {'collector_port' : 8000};
 
 exports.start(config, function (err, server) {
   if (err) {

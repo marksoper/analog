@@ -1,0 +1,17 @@
+
+{
+  "transports": {
+    "loggly": {
+      "subdomain": "",
+      "inputToken": "",
+      "inputName": "",
+      "auth": {
+        "username": "",
+        "password": ""
+      }
+    },
+    "file": {
+	  "filename": "./winston_test_logfile.log"
+    }
+  }
+}
