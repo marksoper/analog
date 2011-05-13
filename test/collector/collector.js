@@ -1,7 +1,7 @@
 
 /*
  * Analog - Analytics for Node Logs
- * server.js: Example Web Server for Analog
+ * collector.js: Example Web Server for Analog
  *
  * Copyright(C) 2011 Mark Soper - masoper at gmail
  * MIT LICENSE
@@ -11,11 +11,24 @@
 var http = require('http'),
     fs = require('fs'),
 		sys = require('sys'),
-    path = require('path');
+    path = require('path'),
+		helper = require('./helper');
+
+// using development fork of winston for now
+require.paths.unshift(path.join(__dirname, '../../', ''));
+var winston = require('winston');
 
 require.paths.unshift(path.join(__dirname, '../../', 'lib'));
-
 var analog = require('analog');
+
+// construct winston transport(s)
+var	configFile = path.join(__dirname, '../config/', 'test-config.json'),
+    config = JSON.parse(fs.readFileSync(configFile).toString()),
+		transports = helper.getTransports(config);
+
+var logger = new (winston.Logger)({
+		  transports: transports
+		  });
 
 exports.createServer = function (port) {
  
@@ -28,10 +41,10 @@ exports.createServer = function (port) {
     });
     
     request.on('end', function () {
-			var collected_data = analog.dumps(request,response,'');
+		  var response_body = "response body goes here";
 			response.writeHead(200);
-		  response.end(collected_data);
-			analog.write(request,response,collected_data);
+		  response.end(response_body);
+			logger.log("info",analog.dumps(request, response, response_body));
     });
   
 	});
