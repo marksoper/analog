@@ -15,11 +15,9 @@ var http = require('http'),
 		helper = require('./helper');
 
 // using development fork of winston for now
-require.paths.unshift(path.join(__dirname, '../../..', ''));
-var winston = require('winston');
+//require.paths.unshift(path.join(__dirname, '../../..', ''));
+var winston = require('../../../winston/lib/winston');
 
-require.paths.unshift(path.join(__dirname, '../../', 'lib'));
-var analog = require('analog');
 
 // construct winston transport(s)
 var	configFile = path.join(__dirname, '../config/', 'test-config.json'),
