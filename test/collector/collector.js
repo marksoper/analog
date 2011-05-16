@@ -44,11 +44,11 @@ exports.createServer = function (port) {
     
     request.on('end', function () {
 	    console.log("--------------");
-	    var reqdata = analog.parseRequest(request);
+
 		  var response_body = "response body goes here";
 			response.writeHead(200);
 		  response.end(response_body);
-			logger.log("info","message payload",instrument.parseTransaction(request, response, response_body));
+			logger.log("info","message payload",instrument.transform(request, response, response_body));
 			//logger.log("info","message payload",{'testmeta_key':'testmeta_val'});
 			//console.log("sent: " + response_body);
 			//logger.log("info","message payload");
