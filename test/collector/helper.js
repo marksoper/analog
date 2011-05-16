@@ -26,3 +26,22 @@ helper.getTransports = function(config) {
   }
 	return transports;
 };
+
+
+helper.getCounters = function(config) {
+	//
+	// creates winston Counters for each counter in config file
+	//
+	counters = [];
+	for (counter_type in config["counters"]) {
+	  switch(counter_type) {
+	    case "redis":
+		    counters.push(new (winston.counters.Redis)(config["counters"].redis));
+			  break;
+		  default:
+			  // add warning message
+				break;
+	  }
+  }
+	return counters;
+};
