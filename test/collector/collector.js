@@ -15,7 +15,7 @@ var http = require('http'),
 		helper = require('./helper');
 
 // using development fork of winston for now
-require.paths.unshift(path.join(__dirname, '../../', ''));
+require.paths.unshift(path.join(__dirname, '../../..', ''));
 var winston = require('winston');
 
 require.paths.unshift(path.join(__dirname, '../../', 'lib'));
