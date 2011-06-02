@@ -1,15 +1,19 @@
 
-analog - Instrumentation of the Node.js request object for analytics
+**analog - Instrumentation of the Node.js request object for analytics**
 
 Makes it easy to collect data optimized for site analytics using whatever existing logging system you have.
 
-Usage
+**Usage**
 
+'''javascript
 var instrument = new (analog.Analog)();
 var interaction_metadata = instrument.transform(request, response, response_body);
+'''
 
 The above results in a flat dictionary of request data like the one below:
 
+'''javascript
+{
 request.socket.bufferSize=0,
 request.socket.fd=8,
 request.socket.type=tcp4,
@@ -59,3 +63,5 @@ request.client._idleStart=Thu Jun 02 2011 20:34:03 GMT+0000 (UTC),
 request.httpVersionMajor=1,
 request.httpVersionMinor=1,
 request.upgrade=false
+}
+'''
