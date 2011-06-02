@@ -5,10 +5,10 @@ Makes it easy to collect data optimized for site analytics using whatever existi
 
 **Usage**
 
-``` js
+
 var instrument = new (analog.Analog)();
 var interaction_metadata = instrument.transform(request, response, response_body);
-```
+
 
 The above results in a flat dictionary of request data like the one below:
 
