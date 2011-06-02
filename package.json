@@ -1,17 +1,13 @@
 {
   "name": "analog",
-  "description": "Analytics for Loggly",
-  "version": "0.0.0",
+  "description": "Instrumentation of Node.js request object for analytics",
+  "version": "0.0.1",
   "author": "Mark Soper <masoper@gmail.com>",
   "repository": {
       "type": "git",
       "url": "http://github.com/marksoper/analog.git" 
   },
-  "keywords": ["analytics", "logging", "loggly", "cloud computing", "api"],
-  "dependencies": {
-    "loggly": ">= 0.3.2",
-  },
-  "bin": { "analog": "./bin/server" },
+  "keywords": ["analytics", "logging", "winston", "instrumentation", "node.js"],
   "main": "./lib/analog",
   "engines": { "node": ">= 0.4.0" }
 }

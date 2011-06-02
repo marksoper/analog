@@ -10,26 +10,21 @@
  
 var http = require('http'),
     fs = require('fs'),
-		sys = require('sys'),
+    sys = require('sys'),
     path = require('path'),
-		helper = require('./helper');
-
-// using development fork of winston for now
-//require.paths.unshift(path.join(__dirname, '../../..', ''));
-var winston = require('../../../winston/lib/winston');
-
+    winston = require('winston'),
+    helper = require('./helper'),
+    analog = require('../../lib/analog');
 
 // construct winston transport(s)
-var	configFile = path.join(__dirname, '../config/', 'test-config.json'),
+  var	configFile = path.join(__dirname, '../config/', 'test-config.json'),
     config = JSON.parse(fs.readFileSync(configFile).toString()),
-		transports = helper.getTransports(config),
-		counters = helper.getCounters(config);
+		transports = helper.getTransports(config)
 
-var instrument = new (winston.instruments.Analog)();
+var instrument = new (analog.Analog)();
 
 var logger = new (winston.Logger)({
 		  transports: transports,
-			counters: counters
 		  });
 
 exports.createServer = function (port) {
