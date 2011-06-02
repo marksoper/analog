@@ -12,7 +12,6 @@ var interaction_metadata = instrument.transform(request, response, response_body
 
 The above results in a flat dictionary of request data like the one below:
 
-'''javascript
 {
 request.socket.bufferSize=0,
 request.socket.fd=8,
@@ -64,4 +63,3 @@ request.httpVersionMajor=1,
 request.httpVersionMinor=1,
 request.upgrade=false
 }
-'''
