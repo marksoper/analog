@@ -7,6 +7,7 @@ Makes it easy to collect data optimized for site analytics using whatever existi
 
 
 var instrument = new (analog.Analog)();
+
 var interaction_metadata = instrument.transform(request, response, response_body);
 
 
